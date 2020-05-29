@@ -35,5 +35,12 @@ namespace WarunkStream.Controllers
 
             return View();
         }
+
+        public ActionResult Certificate()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }

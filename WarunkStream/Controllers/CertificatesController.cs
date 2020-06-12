@@ -18,5 +18,9 @@ namespace WarunkStream.Controllers
         {
             return View();
         }
+        public async Task<ActionResult> Redeem(string id)
+        {
+            return View();
+        }
     }
 }

@@ -32,5 +32,13 @@ namespace WarunkStream.Controllers
         {
             return View();
         }
+        public async Task<ActionResult> Result()
+        {
+            return View();
+        }
+        public async Task<ActionResult> Login()
+        {
+            return View();
+        }
     }
 }

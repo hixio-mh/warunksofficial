@@ -3,7 +3,7 @@ namespace WarunkStream.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial_v1 : DbMigration
+    public partial class Initial_V1 : DbMigration
     {
         public override void Up()
         {
@@ -30,10 +30,14 @@ namespace WarunkStream.Migrations
                     {
                         IdTeam = c.String(nullable: false, maxLength: 128),
                         NameTeam = c.String(),
+                        Categories = c.Int(nullable: false),
                         EmailTeam = c.String(),
                         PhoneTeam = c.String(),
+                        ApplicationUser_Id = c.String(maxLength: 128),
                     })
-                .PrimaryKey(t => t.IdTeam);
+                .PrimaryKey(t => t.IdTeam)
+                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUser_Id)
+                .Index(t => t.ApplicationUser_Id);
             
             CreateTable(
                 "dbo.MemberTeams",
@@ -55,6 +59,8 @@ namespace WarunkStream.Migrations
                         IdEvent = c.String(nullable: false, maxLength: 128),
                         TitleEvent = c.String(),
                         IsPaid = c.Boolean(nullable: false),
+                        Registered = c.DateTimeOffset(nullable: false, precision: 7),
+                        Updated = c.DateTimeOffset(nullable: false, precision: 7),
                         Categories = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.IdEvent);
@@ -88,9 +94,7 @@ namespace WarunkStream.Migrations
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         FullName = c.String(),
-                        Institution = c.String(),
-                        Title = c.String(),
-                        Avatar = c.String(),
+                        Logo = c.String(),
                         Address = c.String(),
                         Registered = c.DateTimeOffset(nullable: false, precision: 7),
                         Updated = c.DateTimeOffset(nullable: false, precision: 7),
@@ -138,6 +142,7 @@ namespace WarunkStream.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.Teams", "ApplicationUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
@@ -151,6 +156,7 @@ namespace WarunkStream.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.MemberTeams", new[] { "Team_IdTeam" });
+            DropIndex("dbo.Teams", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.Certificates", new[] { "Team_IdTeam" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");

@@ -7,13 +7,13 @@ namespace WarunkStream.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Initial_v1 : IMigrationMetadata
+    public sealed partial class Initial_V1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial_v1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial_V1));
         
         string IMigrationMetadata.Id
         {
-            get { return "202005291020244_Initial_v1"; }
+            get { return "202006160239084_Initial_V1"; }
         }
         
         string IMigrationMetadata.Source

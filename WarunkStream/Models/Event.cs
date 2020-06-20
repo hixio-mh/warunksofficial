@@ -14,6 +14,8 @@ namespace WarunkStream.Models
         public string IdEvent { get; set; }
         public string TitleEvent { get; set; }
         public bool IsPaid { get; set; }
+        public DateTimeOffset Registered { get; set; }
+        public DateTimeOffset Updated { get; set; }
         public Categories Categories { get; set; }
     }
     public enum Categories

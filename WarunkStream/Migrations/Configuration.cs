@@ -23,7 +23,7 @@ namespace WarunkStream.Migrations
 
             if (roleManager.Roles.Count() == 0)
             {
-                roleManager.Create(new IdentityRole { Name = "Participant" });
+                roleManager.Create(new IdentityRole { Name = "Team" });
                 roleManager.Create(new IdentityRole { Name = "Administrator" });
             };
             var author = new ApplicationUser
@@ -32,14 +32,12 @@ namespace WarunkStream.Migrations
                 PhoneNumberConfirmed = true,
                 UserName = "admin@warunksofficial.com",
                 Email = "admin@warunksofficial.com",
-                FullName = "Administrator Warunk Stream",
-                Institution = "Warunks Official",
-                Title = "CEO"
+                FullName = "Administrator Warunk Stream"
             };
             if (manager.FindByName("admin@warunksofficial.com") == null)
             {
                 manager.Create(author, "Warunks@2020");
-                manager.AddToRoles(author.Id, new string[] { "Administrator", "Participant" });
+                manager.AddToRoles(author.Id, new string[] { "Administrator" });
             }
         }
     }

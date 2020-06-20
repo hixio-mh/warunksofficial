@@ -13,6 +13,7 @@ namespace WarunkStream.Models
         [Key]
         public string IdTeam { get; set; }
         public string NameTeam { get; set; }
+        public Categories Categories { get; set; }
         public string EmailTeam { get; set; }
         public string PhoneTeam { get; set; }
         public List<MemberTeam> MemberTeams { get; set; }

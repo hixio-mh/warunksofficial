@@ -11,7 +11,7 @@ namespace WarunkStream.Controllers
     public class TournamentsController : Controller
     {
         // GET: Tournaments
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             var pubg = new Models.Event()
             {
@@ -38,6 +38,11 @@ namespace WarunkStream.Controllers
         }
         public async Task<ActionResult> Login()
         {
+            return View();
+        }
+        public async Task<ActionResult> RegisterAccount()
+        {
+
             return View();
         }
     }

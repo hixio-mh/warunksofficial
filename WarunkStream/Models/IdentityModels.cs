@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -11,12 +12,11 @@ namespace WarunkStream.Models
     public class ApplicationUser : IdentityUser
     {
         public string FullName { get; set; }
-        public string Institution { get; set; }
-        public string Title { get; set; }
-        public string Avatar { get; set; }
+        public string Logo { get; set; }
         public string Address { get; set; }
         public DateTimeOffset Registered { get; set; }
         public DateTimeOffset Updated { get; set; }
+        public List<Models.Team> Teams { get; set; }
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
